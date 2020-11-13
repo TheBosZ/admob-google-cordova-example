@@ -36,6 +36,9 @@ function onDeviceReady() {
 	var btn_initialize_banner = document.getElementById('btn_initial_banner');
 	var btn_show_banner = document.getElementById('btn_show_banner');
 
+	var btn_load_app_open = document.getElementById('btn_load_app_open');
+	var btn_show_app_open = document.getElementById('btn_show_app_open');
+
 	admob.setOptions({
 		interstitialAdId: 'ca-app-pub-3940256099942544/1033173712', //Google's test id
 		rewardedAdId: 'ca-app-pub-3940256099942544/5224354917', //Google's test id
@@ -73,6 +76,10 @@ function onDeviceReady() {
 		admob.requestAppOpenAd();
 	}, false);
 
+	btn_show_app_open.addEventListener('click', function () {
+		admob.showAppOpenAd();
+	}, false);
+
 	window.addEventListener(admob.events.onAdLoaded, handleEvent, true);
 	window.addEventListener(admob.events.onAdClosed, handleEvent, true);
 
@@ -82,6 +89,7 @@ function onDeviceReady() {
 	adLoaded[admob.AD_TYPE.INTERSTITIAL] = enableInterstitial;
 	adLoaded[admob.AD_TYPE.REWARDED] = enableRewarded;
 	adLoaded[admob.AD_TYPE.BANNER] = enableBanner;
+	adLoaded[admob.AD_TYPE.APP_OPEN] = enableAppOpen;
 
 	handlers[admob.events.onAdLoaded] = adLoaded;
 
@@ -89,6 +97,7 @@ function onDeviceReady() {
 	adClosed[admob.AD_TYPE.INTERSTITIAL] = disableInterstitial;
 	adClosed[admob.AD_TYPE.REWARDED] = disableRewarded;
 	adClosed[admob.AD_TYPE.BANNER] = disableBanner;
+	adClosed[admob.AD_TYPE.APP_OPEN] = disableAppOpen;
 
 	handlers[admob.events.onAdClosed] = adClosed;
 
@@ -129,6 +138,14 @@ function onDeviceReady() {
 
 	function disableBanner() {
 		btn_show_banner.disabled = true;
+	}
+
+	function enableAppOpen() {
+		btn_show_app_open.disabled = false;
+	}
+
+	function disableAppOpen() {
+		btn_show_app_open.disabled = true;
 	}
 
 }
