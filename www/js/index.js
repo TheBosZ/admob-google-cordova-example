@@ -40,6 +40,7 @@ function onDeviceReady() {
 		interstitialAdId: 'ca-app-pub-3940256099942544/1033173712', //Google's test id
 		rewardedAdId: 'ca-app-pub-3940256099942544/5224354917', //Google's test id
 		bannerAdId: 'ca-app-pub-3940256099942544/6300978111', //Google's test id
+		appOpenAdId: 'ca-app-pub-3940256099942544/3419835294', //Google's test id
 		autoShowInterstitial: false,
 		autoShowBanner: false,
 	});
@@ -66,6 +67,10 @@ function onDeviceReady() {
 
 	btn_show_banner.addEventListener('click', function () {
 		admob.showBannerAd();
+	}, false);
+
+	btn_load_app_open.addEventListener('click', function () {
+		admob.requestAppOpenAd();
 	}, false);
 
 	window.addEventListener(admob.events.onAdLoaded, handleEvent, true);
